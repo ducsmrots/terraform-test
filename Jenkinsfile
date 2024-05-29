@@ -16,7 +16,7 @@ pipeline {
                       terraform init
                       terraform validate
                       terraform plan -out=tfplan -var "aws_access_key=${AWS_CREDS_USR}" -var "aws_secret_key=${AWS_CREDS_PSW}"
-                      terraform apply -var "aws_access_key=${AWS_CREDS_USR}" -var "aws_secret_key=${AWS_CREDS_PSW}"
+                      terraform apply -var "aws_access_key=${AWS_CREDS_USR}" -var "aws_secret_key=${AWS_CREDS_PSW} -auto-approve tfplan"
                       terraform destroy
                       '''
                     }
