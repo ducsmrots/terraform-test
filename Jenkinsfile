@@ -13,10 +13,12 @@ pipeline {
                 ansiColor('xterm') {
                     container('terraform') {
                       sh  '''
+                      export AWS_ACCESS_KEY_ID="${AWS_CREDS_USR}"
+                    export AWS_SECRET_ACCESS_KEY="${AWS_CREDS_PSW}"
                       terraform init
                       terraform validate
-                      terraform plan -out=tfplan -var "aws_access_key_id=${AWS_CREDS_USR}" -var "aws_secret_access_key=${AWS_CREDS_PSW}"
-                      terraform apply -var "aws_access_key_id=${AWS_CREDS_USR}" -var "aws_secret_access_key=${AWS_CREDS_PSW} -auto-approve tfplan"
+                      terraform plan -out=tfplan
+                      terraform apply -auto-approve tfplan"
                       terraform destroy
                       '''
                     }
