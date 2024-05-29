@@ -19,7 +19,7 @@ pipeline {
                       terraform validate
                       terraform plan -out=tfplan
                       terraform apply -auto-approve tfplan
-                      terraform destroy
+                      terraform destroy -auto-approve tfplan
                       '''
                     }
                 }
