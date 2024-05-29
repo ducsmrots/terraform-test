@@ -1,5 +1,7 @@
 provider "aws" {
   region = "us-east-1"  # Specify your desired region here
+  aws_access_key_id = "${var.aws_access_key_id}"
+  aws_secret_access_key = "${aws_secret_access_key}"
 }
 
 module "eks" {
