@@ -24,12 +24,14 @@ pipeline {
         stage('terraform deploy') {
             steps {
                 // Your build steps here
-                container('terraform') {
-                  sh 'terraform init'
-                  sh 'terraform validate'
-                  sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} plan -out=tfplan'
-                  sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} apply'
-                  sh 'terraform destroy'
+                ansiColor('xterm') {
+                    container('terraform') {
+                      sh 'terraform init'
+                      sh 'terraform validate'
+                      sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} plan -out=tfplan'
+                      sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} apply'
+                      sh 'terraform destroy'
+                    }
                 }
             }
         }
