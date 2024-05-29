@@ -27,8 +27,8 @@ pipeline {
                 container('terraform') {
                   sh 'terraform init'
                   sh 'terraform validate'
-                  sh 'terraform plan -out=tfplan'
-                  sh 'terraform apply'
+                  sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} plan -out=tfplan'
+                  sh 'terraform -var "aws_access_key=${AWS_ACCESS_KEY_ID} apply'
                   sh 'terraform destroy'
                 }
             }
